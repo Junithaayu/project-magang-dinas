@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Beranda - Portal Magang Jatim</title>
 
     <style>
@@ -13,364 +12,327 @@
             padding: 0;
         }
 
+        :root {
+            --blue: #0754d8;
+            --blue-dark: #06449f;
+            --text: #20212a;
+            --muted: #505363;
+            --page: #faf9ff;
+            --line: #d4d4e0;
+        }
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
             min-height: 100vh;
-            background: #f8f8ff;
-            color: #20222d;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background: var(--page);
         }
 
         .dashboard {
-            min-height: 100vh;
             display: flex;
+            min-height: 100vh;
         }
 
-        /* =========================
-           SIDEBAR
-        ========================== */
-
+        /* SIDEBAR */
         .sidebar {
-            width: 250px;
-            min-height: 100vh;
-            background: #06449f;
-            color: white;
-
+            position: relative;
+            isolation: isolate;
             display: flex;
+            flex: 0 0 288px;
             flex-direction: column;
+            min-height: 100vh;
+            padding: 22px 14px 28px;
+            overflow: hidden;
+            color: #fff;
+            background: var(--blue);
+        }
 
-            padding: 24px 14px;
+        .sidebar::before,
+        .sidebar::after {
+            position: absolute;
+            z-index: -1;
+            content: "";
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.075);
+            pointer-events: none;
+        }
+
+        .sidebar::before {
+            width: 225px;
+            height: 225px;
+            top: 6px;
+            right: -72px;
+        }
+
+        .sidebar::after {
+            width: 280px;
+            height: 280px;
+            bottom: -72px;
+            left: -82px;
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 10px;
-            margin-bottom: 24px;
+            gap: 9px;
+            min-height: 92px;
+            margin-bottom: 30px;
+            padding: 0 2px;
         }
 
         .brand-logo {
-            width: 48px;
-            height: 48px;
+            display: flex;
+            flex: 0 0 59px;
+            align-items: center;
+            justify-content: center;
         }
 
         .brand-logo img {
-            width: 34px;
-            height: 34px;
+            display: block;
+            width: 58px;
+            height: 82px;
+            object-fit: contain;
         }
 
-        .brand-name {
-            font-size: 25px;
+        .brand-text {
+            min-width: 0;
+            line-height: 1.35;
         }
 
-        .brand-region {
-            font-size: 11px;
+        .brand-tag {
+            display: inline-block;
+            margin-bottom: 5px;
+            padding: 3px 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            font-size: 10px;
+            font-weight: 700;
             letter-spacing: 0.2px;
         }
 
-        /* Navigation */
+        .brand-title {
+            margin-bottom: 3px;
+            font-size: 16px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .brand-subtitle {
+            font-size: 11px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.83);
+        }
 
         .navigation {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 7px;
         }
 
-        .nav-link {
-            height: 40px;
-
+        .nav-link,
+        .bottom-link {
             display: flex;
             align-items: center;
-            gap: 11px;
-
-            padding: 0 12px;
-
-            border-radius: 7px;
-
-            color: rgba(255, 255, 255, 0.85);
+            gap: 12px;
+            min-height: 48px;
+            padding: 0 14px;
+            border-radius: 16px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
             text-decoration: none;
-
-            font-size: 13px;
-
-            transition: background 0.15s ease;
+            transition: background 0.15s ease, color 0.15s ease;
         }
 
-        .nav-link:hover {
-            background: rgba(255, 255, 255, 0.08);
+        .nav-link:hover,
+        .bottom-link:hover {
+            background: rgba(255, 255, 255, 0.12);
         }
 
         .nav-link.active {
-            background: #438df5;
-            color: #ffffff;
+            color: var(--blue);
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
         }
 
         .nav-icon {
+            flex: 0 0 19px;
             width: 19px;
             height: 19px;
-            flex-shrink: 0;
         }
-
-        /* Bottom menu */
 
         .sidebar-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
             margin-top: auto;
+            padding-top: 34px;
         }
 
-        .help-button {
-            height: 38px;
-
-            margin: 0 4px 20px;
-
-            border-radius: 7px;
-
-            background: #075bd1;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
-
-            color: white;
-            text-decoration: none;
-
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .sidebar-divider {
-            height: 1px;
-            background: rgba(255, 255, 255, 0.18);
-
-            margin-bottom: 18px;
-        }
-
-        .bottom-link {
-            height: 48px;
-
-            display: flex;
-            align-items: center;
-            gap: 13px;
-
-            padding: 0 15px;
-
-            color: rgba(255, 255, 255, 0.82);
-            text-decoration: none;
-
-            font-size: 13px;
-        }
-
-        /* =========================
-           MAIN AREA
-        ========================== */
-
+        /* MAIN AREA */
         .main {
             flex: 1;
             min-width: 0;
         }
 
-        /* Header */
-
         .header {
-            height: 64px;
-
             display: flex;
             align-items: center;
-
-            padding: 0 28px;
-
-            border-bottom: 1px solid #cfd2df;
-
-            background: #f9f9ff;
+            justify-content: space-between;
+            min-height: 68px;
+            padding: 0 32px;
+            border-bottom: 1px solid #e1dfeb;
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
         }
 
-        .portal-title {
-            color: #06449f;
-            font-size: 19px;
+        .page-title {
+            color: var(--blue-dark);
+            font-size: 25px;
             font-weight: 700;
         }
 
-        .header-right {
-            margin-left: auto;
-
-            display: flex;
-            align-items: center;
-            gap: 26px;
-        }
-
-        /* Search */
-
-        .search {
-            width: 235px;
-            height: 36px;
-
+        .account {
             display: flex;
             align-items: center;
             gap: 10px;
-
-            padding: 0 12px;
-
-            border: 1px solid #c6cadd;
-            border-radius: 22px;
-
-            background: #f5f5fc;
         }
 
-        .search svg {
-            width: 16px;
-            height: 16px;
-            color: #404452;
+        .account-text {
+            text-align: right;
+            line-height: 1.35;
         }
 
-        .search input {
-            width: 100%;
-
-            border: none;
-            outline: none;
-            background: transparent;
-
-            font-family: inherit;
-            font-size: 13px;
-            color: #30323d;
+        .account-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: #252633;
         }
 
-        .search input::placeholder {
-            color: #737789;
+        .account-status {
+            font-size: 12px;
+            font-weight: 600;
+            color: #505363;
         }
 
-        .header-icon {
-            width: 21px;
-            height: 21px;
-
-            color: #30323d;
-
-            position: relative;
-        }
-
-        .notification-dot {
-            position: absolute;
-
-            width: 8px;
-            height: 8px;
-
-            top: -2px;
-            right: -3px;
-
-            background: #c51f2c;
-            border-radius: 50%;
-        }
-
-        .header-divider {
-            width: 1px;
-            height: 33px;
-            background: #cbd0df;
-        }
-
-        .avatar {
-            width: 36px;
-            height: 36px;
-
-            border-radius: 50%;
-
-            background: #dfe4ee;
-            color: #06449f;
-
+        .account-avatar {
             display: flex;
             align-items: center;
             justify-content: center;
-
-            font-size: 13px;
-            font-weight: 700;
-
-            overflow: hidden;
+            width: 33px;
+            height: 33px;
+            border-radius: 50%;
+            color: #fff;
+            background: var(--blue-dark);
         }
 
-        /* =========================
-           CONTENT
-        ========================== */
+        .account-avatar svg {
+            width: 17px;
+            height: 17px;
+        }
 
+        /* CONTENT */
         .content {
-            padding: 28px 30px;
+            padding: 27px 30px 40px;
+        }
+
+        .welcome-card {
+            padding: 22px 24px 23px;
+            border: 1px solid #d0cfdb;
+            border-radius: 13px;
+            background: #fbfaff;
+            box-shadow: 0 2px 5px rgba(20, 20, 35, 0.22);
+        }
+
+        .period-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 7px;
+        }
+
+        .period-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            color: #132653;
+            background: #dce2ff;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.1px;
+        }
+
+        .period-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #0754d8;
+        }
+
+        .period-separator {
+            color: #c5c9d8;
+            font-size: 14px;
         }
 
         .welcome-heading {
+            margin-bottom: 5px;
+            color: #20212a;
             font-size: 27px;
-            line-height: 1.2;
+            line-height: 1.18;
             font-weight: 700;
-            margin-bottom: 8px;
+            letter-spacing: -0.7px;
         }
 
         .welcome-description {
-            max-width: 700px;
-            font-size: 14px;
+            max-width: 670px;
+            color: #505363;
+            font-size: 13px;
             line-height: 1.5;
         }
-        /* Dashboard grid */
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 2fr) minmax(240px, 0.9fr);
-            gap: 20px;
-
-            margin-top: 28px;
-        }
-
-        /* Start registration card */
 
         .start-card {
-            min-height: 350px;
-
             position: relative;
+            isolation: isolate;
+            min-height: 306px;
+            margin: 27px 3px 0;
             overflow: hidden;
-
-            border: 1px solid #c4c9dc;
-            border-radius: 12px;
-
-            background: #f0f1fc;
+            border: 1px solid #c9cada;
+            border-radius: 13px;
+            background: #fbfaff;
+            box-shadow: 0 3px 5px rgba(20, 20, 35, 0.2);
         }
 
         .start-card::after {
-            content: "";
-
             position: absolute;
-
-            width: 42%;
-            height: 120%;
-
+            z-index: -1;
             top: -10%;
-            right: -5%;
-
-            background: #e4e7f5;
-
-            transform: skewX(-7deg);
-
+            right: 11%;
+            width: 18%;
+            height: 120%;
+            content: "";
+            transform: skewX(-6deg);
+            background: #edf0fb;
             pointer-events: none;
         }
 
         .start-content {
-            position: relative;
-            z-index: 2;
-
-            padding: 32px 34px;
+            max-width: 620px;
+            padding: 40px;
         }
 
         .step-badge {
-            width: fit-content;
-
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 7px;
-
-            padding: 6px 13px;
-
+            gap: 8px;
+            margin-bottom: 27px;
+            padding: 5px 12px;
             border-radius: 999px;
-
-            background: #dce5fa;
-            color: #06449f;
-
+            color: var(--blue-dark);
+            background: #e1e8f8;
             font-size: 12px;
             font-weight: 600;
-
-            margin-bottom: 27px;
         }
 
         .step-badge svg {
@@ -379,40 +341,43 @@
         }
 
         .start-title {
-            font-size: 22px;
-            line-height: 1.25;
+            margin-bottom: 14px;
+            font-size: 24px;
+            line-height: 1.3;
             font-weight: 700;
-            margin-bottom: 12px;
+            letter-spacing: -0.3px;
         }
 
         .start-description {
-            max-width: 500px;
-            font-size: 13px;
-            line-height: 1.5;
-            color: #505361;
-            margin-bottom: 25px;
+            max-width: 450px;
+            margin-bottom: 30px;
+            color: #505363;
+            font-size: 14px;
+            line-height: 1.45;
         }
 
         .primary-button {
-            height: 40px;
-
-            padding: 0 18px;
-
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-
-            border: none;
-            border-radius: 7px;
-
-            background: #06449f;
-            color: white;
-
-            font-size: 12px;
+            justify-content: center;
+            gap: 9px;
+            min-height: 48px;
+            padding: 0 24px;
+            border: 0;
+            border-radius: 8px;
+            color: #fff;
+            background: var(--blue-dark);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.12);
+            font-family: inherit;
+            font-size: 14px;
             font-weight: 600;
-
             text-decoration: none;
             cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .primary-button:hover {
+            background: #053b89;
         }
 
         .primary-button svg {
@@ -420,636 +385,262 @@
             height: 18px;
         }
 
-        /* Right cards */
-
-        .right-column {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .info-card {
-            border: 1px solid #c4c9dc;
-            border-radius: 12px;
-            background: #ffffff;
-            padding: 22px 22px;
-        }
-
-        .profile-card {
-            min-height: 145px;
-        }
-
-        .info-title {
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 13px;
-        }
-
-        .completion-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            margin-bottom: 9px;
-
-            color: #555866;
-            font-size: 13px;
-        }
-
-        .completion-value {
-            color: #06449f;
-            font-weight: 700;
-        }
-
-        .progress-track {
-            height: 8px;
-
-            background: #dfe1eb;
-            border-radius: 999px;
-
-            overflow: hidden;
-
-            margin-bottom: 24px;
-        }
-
-        .progress-bar {
-            width: 25%;
-            height: 100%;
-
-            background: #06449f;
-            border-radius: 999px;
-        }
-
-        .outline-button {
-            width: 100%;
-            height: 36px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border: 2px solid #06449f;
-            border-radius: 7px;
-
-            background: transparent;
-            color: #06449f;
-
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: 600;
-
-            text-decoration: none;
-        }
-
-        /* Important information */
-
-        .important-card {
-            min-height: 207px;
-        }
-
-        .important-title {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-
-            font-size: 20px;
-            font-weight: 700;
-
-            margin-bottom: 19px;
-        }
-
-        .important-title svg {
-            width: 21px;
-            height: 21px;
-        }
-
-        .empty-notification {
-            min-height: 114px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            padding: 17px;
-
-            border: 1px dashed #9fbaff;
-            border-radius: 7px;
-
-            background: #f0f1ff;
-
-            text-align: center;
-
-            color: #505361;
-
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================== */
-
-        @media (max-width: 1050px) {
+        @media (max-width: 900px) {
             .sidebar {
-                width: 230px;
-            }
-
-            .brand {
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-
-            .brand-name {
-                font-size: 21px;
-            }
-
-            .content {
-                padding-left: 24px;
-                padding-right: 24px;
-            }
-
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .right-column {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 800px) {
-            .sidebar {
-                width: 76px;
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-
-            .brand {
-                justify-content: center;
-                padding: 10px 0;
-            }
-
-            .brand-text {
-                display: none;
-            }
-
-            .nav-link {
-                justify-content: center;
-                padding: 0;
-            }
-
-            .nav-link span {
-                display: none;
-            }
-
-            .bottom-link {
-                justify-content: center;
-                padding: 0;
-            }
-
-            .bottom-link span {
-                display: none;
-            }
-
-            .help-button span {
-                display: none;
+                flex-basis: 245px;
             }
 
             .header {
-                padding: 0 20px;
-            }
-
-            .search {
-                width: 190px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .sidebar {
-                display: none;
-            }
-
-            .header {
-                height: auto;
-                min-height: 65px;
-                padding: 13px 16px;
-            }
-
-            .portal-title {
-                font-size: 17px;
-            }
-
-            .header-right {
-                gap: 12px;
-            }
-
-            .search {
-                display: none;
+                padding: 0 24px;
             }
 
             .content {
-                padding: 25px 17px;
+                padding: 24px;
             }
 
             .welcome-heading {
-                font-size: 26px;
+                font-size: 29px;
+            }
+
+            .start-content {
+                padding: 34px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .dashboard {
+                display: block;
+            }
+
+            .sidebar {
+                min-height: auto;
+                padding: 12px;
+            }
+
+            .brand {
+                min-height: 65px;
+                margin-bottom: 12px;
+            }
+
+            .brand-logo {
+                flex-basis: 43px;
+            }
+
+            .brand-logo img {
+                width: 42px;
+                height: 57px;
+            }
+
+            .navigation {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 6px;
+            }
+
+            .nav-link {
+                min-height: 42px;
+                padding: 0 10px;
+                border-radius: 10px;
+                font-size: 12px;
+            }
+
+            .sidebar-bottom {
+                margin-top: 8px;
+                padding-top: 8px;
+            }
+
+            .bottom-link {
+                min-height: 38px;
+                font-size: 12px;
+            }
+
+            .header {
+                min-height: 62px;
+                padding: 0 16px;
+            }
+
+            .page-title {
+                font-size: 20px;
+            }
+
+            .account-name,
+            .account-status {
+                font-size: 10px;
+            }
+
+            .account-avatar {
+                width: 30px;
+                height: 30px;
+            }
+
+            .content {
+                padding: 18px 14px 28px;
+            }
+
+            .welcome-card {
+                padding: 18px;
+            }
+
+            .period-badge {
+                font-size: 10px;
+            }
+
+            .welcome-heading {
+                font-size: 25px;
+                letter-spacing: -0.4px;
             }
 
             .welcome-description {
                 font-size: 14px;
             }
 
-            .dashboard-grid {
-                margin-top: 27px;
-            }
-
-            .right-column {
-                display: flex;
-            }
-
             .start-card {
-                min-height: 370px;
+                min-height: 0;
+                margin: 18px 0 0;
+            }
+
+            .start-card::after {
+                right: -8%;
+                width: 30%;
+                opacity: 0.6;
             }
 
             .start-content {
-                padding: 30px 25px;
+                padding: 25px 20px;
+            }
+
+            .step-badge {
+                margin-bottom: 20px;
+            }
+
+            .start-title {
+                font-size: 21px;
+            }
+
+            .start-description {
+                font-size: 13px;
             }
         }
     </style>
 </head>
-
 <body>
-
 <div class="dashboard">
-
-    {{-- =========================
-         SIDEBAR
-    ========================== --}}
     <aside class="sidebar">
-
         <div>
-
-            {{-- Brand --}}
             <div class="brand">
-
                 <div class="brand-logo">
-                    <img
-                        src="{{ asset('images/logo-dindik-jatim.svg') }}"
-                        alt="Logo Dinas Pendidikan Jawa Timur"
-                    >
+                    <img src="{{ asset('images/logo-dindik-jatim.svg') }}" alt="Logo Dinas Pendidikan Jawa Timur">
                 </div>
-
                 <div class="brand-text">
-                    <div class="brand-name">
-                        Dinas Pendidikan
-                    </div>
-
-                    <div class="brand-region">
-                        Provinsi Jawa Timur
-                    </div>
+                    <div class="brand-tag">BINDIK JATIM</div>
+                    <div class="brand-title">Student Portal</div>
+                    <div class="brand-subtitle">Dinas Pendidikan<br>Provinsi Jawa Timur</div>
                 </div>
-
             </div>
 
-
-            {{-- Navigation --}}
             <nav class="navigation">
-
-                <a
-                    href="{{ route('dashboard.pendaftar') }}"
-                    class="nav-link active"
-                >
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none">
-                        <rect x="3" y="3" width="7" height="7" fill="currentColor"/>
-                        <rect x="14" y="3" width="7" height="7" fill="currentColor"/>
-                        <rect x="3" y="14" width="7" height="7" fill="currentColor"/>
-                        <rect x="14" y="14" width="7" height="7" fill="currentColor"/>
+                <a href="{{ route('dashboard.pendaftar') }}" class="nav-link active">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m3 10 9-7 9 7"></path><path d="M5 9v11h5v-6h4v6h5V9"></path>
                     </svg>
-
                     <span>Beranda</span>
                 </a>
 
-
                 <a href="#" class="nav-link">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="1.8"
-                         stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="7" width="18" height="13" rx="1"/>
-                        <path d="M8 7V4h8v3"/>
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M6 3h9l4 4v14H6z"></path><path d="M15 3v5h4"></path><path d="M9 13h6M9 17h6"></path>
                     </svg>
-
-                    <span>Pilih Program</span>
-                </a>
-
-
-                <a href="#" class="nav-link">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="1.8"
-                         stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 3h9l4 4v14H6z"/>
-                        <path d="M15 3v5h4"/>
-                        <path d="M9 13h6"/>
-                        <path d="M9 17h6"/>
-                    </svg>
-
                     <span>Dokumen Magang</span>
                 </a>
 
-
                 <a href="#" class="nav-link">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="1.8">
-                        <circle cx="12" cy="12" r="9"/>
-                        <circle cx="12" cy="9" r="3"/>
-                        <path d="M6.8 18c.9-2.4 2.7-3.6 5.2-3.6s4.3 1.2 5.2 3.6"/>
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"></circle><path d="m12 6 1.8 3.7 4.1.6-3 2.9.7 4.1-3.6-1.9-3.6 1.9.7-4.1-3-2.9 4.1-.6z"></path>
                     </svg>
-
-                    <span>Profil</span>
+                    <span>Surat Keterangan</span>
                 </a>
 
+                <a href="#" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="8" r="3.2"></circle><path d="M4.5 20c.5-4 3-6 7.5-6s7 2 7.5 6z"></path>
+                    </svg>
+                    <span>Profil</span>
+                </a>
             </nav>
-
         </div>
 
-
-        {{-- Bottom --}}
         <div class="sidebar-bottom">
-
-            <a href="#" class="help-button">
-
-                <svg width="15" height="15" viewBox="0 0 24 24"
-                     fill="none" stroke="currentColor" stroke-width="1.8"
-                     stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 17a8 8 0 0 1 16 0"/>
-                    <path d="M6 17v-2a6 6 0 0 1 12 0v2"/>
-                    <path d="M4 17h3v3H4z"/>
-                    <path d="M17 17h3v3h-3z"/>
+            <a href="#" class="bottom-link">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"></circle><path d="M9.6 9a2.5 2.5 0 1 1 4.1 1.9c-1.2.8-1.7 1.3-1.7 2.6"></path><path d="M12 17.2h.01"></path>
                 </svg>
-
-                <span>Bantuan Teknis</span>
-
+                <span>Bantuan</span>
             </a>
 
-
-            <div class="sidebar-divider"></div>
-
-
             <a href="#" class="bottom-link">
-
-                <svg width="17" height="17" viewBox="0 0 24 24"
-                     fill="none" stroke="currentColor" stroke-width="1.8"
-                     stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.4 1.4-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.2h-2v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1L9 17l.1-.1A1.7 1.7 0 0 0 9.4 15a1.7 1.7 0 0 0-1.5-1H7.7v-2h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9L9 9l1.4-1.4.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.5v-.2h2v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1L20 9l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.2v2h-.2a1.7 1.7 0 0 0-1.7 1z"/>
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M14 5h5v14h-5"></path>
                 </svg>
-
-                <span>Pengaturan</span>
-
-            </a>
-
-
-            <a href="#" class="bottom-link">
-
-                <svg width="17" height="17" viewBox="0 0 24 24"
-                     fill="none" stroke="currentColor" stroke-width="1.8"
-                     stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="9"/>
-                    <path d="M12 10v6"/>
-                    <circle cx="12" cy="7" r=".7" fill="currentColor"/>
-                </svg>
-
-                <span>Tentang</span>
-
-            </a>
-
-
-            <a href="#" class="bottom-link">
-
-                <svg width="17" height="17" viewBox="0 0 24 24"
-                     fill="none" stroke="currentColor" stroke-width="1.8"
-                     stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 17l5-5-5-5"/>
-                    <path d="M15 12H3"/>
-                    <path d="M14 5h5v14h-5"/>
-                </svg>
-
                 <span>Keluar</span>
-
             </a>
-
         </div>
-
     </aside>
 
-
-    {{-- =========================
-         MAIN
-    ========================== --}}
     <main class="main">
-
-        {{-- Header --}}
         <header class="header">
+            <h1 class="page-title">Peserta Aktif</h1>
 
-            <div class="portal-title">
-                Portal Magang Jatim
+            <div class="account">
+                <div class="account-text">
+                    <div class="account-name">{{ $user->name }}</div>
+                    <div class="account-status">Mahasiswa Terdaftar</div>
+                </div>
+                <div class="account-avatar" aria-label="Akun pengguna">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="8" r="3.2"></circle><path d="M5 20c.5-4 2.8-6 7-6s6.5 2 7 6"></path>
+                    </svg>
+                </div>
             </div>
-
-            <div class="header-right">
-
-                {{-- Search --}}
-                <div class="search">
-
-                    <svg viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="1.8"
-                         stroke-linecap="round">
-                        <circle cx="11" cy="11" r="7"/>
-                        <path d="M16 16l5 5"/>
-                    </svg>
-
-                    <input
-                        type="text"
-                        placeholder="Cari program..."
-                    >
-
-                </div>
-
-
-                {{-- Notification --}}
-                <div class="header-icon">
-
-                    <svg viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="1.8"
-                         stroke-linecap="round"
-                         stroke-linejoin="round">
-                        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
-                        <path d="M10 21h4"/>
-                    </svg>
-
-                    <span class="notification-dot"></span>
-
-                </div>
-
-
-                {{-- Help --}}
-                <div class="header-icon">
-
-                    <svg viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="1.8"
-                         stroke-linecap="round"
-                         stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="9"/>
-                        <path d="M9.7 9a2.5 2.5 0 1 1 4.1 1.9c-1.2.9-1.8 1.3-1.8 2.6"/>
-                        <circle cx="12" cy="17" r=".7" fill="currentColor"/>
-                    </svg>
-
-                </div>
-
-
-                <div class="header-divider"></div>
-
-
-                {{-- Avatar --}}
-                <div class="avatar">
-                    {{ strtoupper(substr($user->name, 0, 1)) }}
-                </div>
-
-            </div>
-
         </header>
 
-
-        {{-- Content --}}
         <section class="content">
-
-            <h1 class="welcome-heading">
-                Selamat Datang, {{ $user->name }}! 
-            </h1>
-
-            <p class="welcome-description">
-                Portal Magang Jatim siap membantu Anda menemukan pengalaman kerja terbaik di lingkungan pemerintahan. Mari mulai perjalanan Anda.
-            </p>
-
-
-            <div class="dashboard-grid">
-
-                {{-- Start registration --}}
-                <div class="start-card">
-
-                    <div class="start-content">
-
-                        <div class="step-badge">
-
-                            <svg viewBox="0 0 24 24" fill="none"
-                                 stroke="currentColor" stroke-width="1.8"
-                                 stroke-linecap="round"
-                                 stroke-linejoin="round">
-                                <path d="M12 3l2.3 4.7L19 10l-4.7 2.3L12 17l-2.3-4.7L5 10l4.7-2.3z"/>
-                                <path d="M19 3v4"/>
-                                <path d="M21 5h-4"/>
-                            </svg>
-
-                            <span>Langkah Awal</span>
-
-                        </div>
-
-
-                        <h2 class="start-title">
-                            Mulai Pendaftaran Magang Anda Hari Ini
-                        </h2>
-
-
-                        <p class="start-description">
-                            Telusuri berbagai program magang yang tersedia di instansi pemerintahan Jawa Timur dan temukan yang sesuai dengan jurusan Anda.
-                        </p>
-
-
-                        <a href="#" class="primary-button">
-
-                            <span>Cari Program</span>
-
-                            <svg viewBox="0 0 24 24" fill="none"
-                                 stroke="currentColor" stroke-width="2"
-                                 stroke-linecap="round"
-                                 stroke-linejoin="round">
-                                <path d="M5 12h13"/>
-                                <path d="M13 6l6 6-6 6"/>
-                            </svg>
-
-                        </a>
-
-                    </div>
-
+            <div class="welcome-card">
+                <div class="period-line">
+                    <span class="period-badge"><span class="period-dot"></span>Periode Pendaftaran Aktif Semester Ganjil</span>
+                    <span class="period-separator" aria-hidden="true">•</span>
                 </div>
 
-
-                {{-- Right column --}}
-                <div class="right-column">
-
-                    {{-- Profile --}}
-                    <div class="info-card profile-card">
-
-                        <h2 class="info-title">
-                            Status Profil
-                        </h2>
-
-                        <div class="completion-row">
-
-                            <span>Kelengkapan Data</span>
-
-                            <span class="completion-value">
-                                25%
-                            </span>
-
-                        </div>
-
-                        <div class="progress-track">
-                            <div class="progress-bar"></div>
-                        </div>
-
-                        <a href="#" class="outline-button">
-                            Lengkapi Profil
-                        </a>
-
-                    </div>
-
-
-                    {{-- Important --}}
-                    <div class="info-card important-card">
-
-                        <h2 class="important-title">
-
-                            <svg viewBox="0 0 24 24" fill="none"
-                                 stroke="currentColor" stroke-width="1.8"
-                                 stroke-linecap="round">
-                                <circle cx="12" cy="12" r="9"/>
-                                <path d="M12 10v6"/>
-                                <circle cx="12" cy="7" r=".7" fill="currentColor"/>
-                            </svg>
-
-                            <span>Informasi Penting</span>
-
-                        </h2>
-
-
-                        <div class="empty-notification">
-                            Belum ada notifikasi baru.<br>
-                            Silakan lengkapi profil Anda<br>
-                            terlebih dahulu untuk mulai<br>
-                            mendaftar.
-                        </div>
-
-                    </div>
-
-                </div>
-
+                <h2 class="welcome-heading">Selamat Datang, {{ $user->name }}!</h2>
+                <p class="welcome-description">
+                    Pantau status pendaftaran dan informasi seleksi di lingkungan<br class="desktop-break">
+                    Dinas Pendidikan Provinsi Jawa Timur secara transparan dan terpadu.
+                </p>
             </div>
 
+            <div class="start-card">
+                <div class="start-content">
+                    <div class="step-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="m4 15 5-5 5 5-5 5z"></path><path d="M9 10 13 6c2-2 5-2 7-2 0 2 0 5-2 7l-4 4"></path><path d="m14 6 4 4"></path>
+                        </svg>
+                        <span>Langkah Awal</span>
+                    </div>
+
+                    <h2 class="start-title">Mulai Pendaftaran Magang Anda Hari Ini</h2>
+                    <p class="start-description">
+                        Telusuri berbagai program magang yang tersedia di instansi pemerintahan Jawa Timur dan temukan yang sesuai dengan jurusan Anda.
+                    </p>
+
+                    <a href="#" class="primary-button">
+                        <span>Cari Program</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h13"></path><path d="m13 6 6 6-6 6"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </section>
-
     </main>
-
 </div>
-
 </body>
 </html>

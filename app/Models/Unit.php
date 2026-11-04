@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\KapasitasUnit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,5 +23,13 @@ class Unit extends Model
     public function bidangs(): HasMany
     {
         return $this->hasMany(Bidang::class);
+    }
+    
+    public function kapasitasUnits(): HasMany
+    {
+        return $this->hasMany(
+            KapasitasUnit::class,
+            'unit_tujuan'
+        );
     }
 }

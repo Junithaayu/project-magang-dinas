@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class HasilSeleksi extends Model
 {
+    protected $table = 'hasil_seleksi';
     /**
      * Get the application.
      */

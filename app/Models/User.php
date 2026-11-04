@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\KapasitasUnit;
 
 #[Fillable(['name', 'email', 'password', 'role', 'kantor_id'])]
 #[Hidden(['password', 'remember_token'])]
@@ -79,5 +80,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function kapasitasUnitsDiinput(): HasMany
+    {
+        return $this->hasMany(
+            KapasitasUnit::class,
+            'id_petugas_input'
+        );
     }
 }

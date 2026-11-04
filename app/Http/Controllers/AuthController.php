@@ -38,7 +38,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             return match (Auth::user()->role) {
-                'admin' => redirect()->route('dashboard.admin'),
+                'admin_pusat', 'admin_upt_tik' => redirect()->route('admin.pilih-unit'),
                 'kepala' => redirect()->route('dashboard.kepala'),
                 default => redirect()->route('dashboard.pendaftar'),
             };

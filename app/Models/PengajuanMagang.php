@@ -9,6 +9,32 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PengajuanMagang extends Model
 {
+    protected $table = 'pengajuan_magang';
+
+    protected $fillable = [
+        'user_id',
+        'unit_id',
+        'bidang_id',
+        'tanggal_mulai',
+        'tanggal_selesai',
+        'nama_lengkap',
+        'nik',
+        'no_telepon',
+        'jenjang_pendidikan',
+        'nama_instansi',
+        'jurusan',
+        'nomor_induk',
+        'nilai',
+        'alamat_lengkap',
+        'butuh_surat_balasan',
+        'deskripsi_proposal',
+        'topik',
+        'hasil_diharapkan',
+        'konversi_mata_kuliah',
+        'pernyataan_benar',
+        'status_pengajuan',
+        'status_verifikasi',
+    ];
     /**
      * Get the user who owns this application.
      */
